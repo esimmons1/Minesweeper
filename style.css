@@ -1,70 +1,82 @@
-body {
-  font-family: sans-serif;
-  text-align: center;
-  background: #f0f0f0;
+/* Basic reset */
+* {
   margin: 0;
-  padding: 20px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styling */
+body {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  flex-direction: column;
+  justify-content: center;  /* Center horizontally */
+  align-items: center;      /* Center vertically */
+  height: 100vh;            /* Take up full viewport height */
+  background-color: lightgray; /* Light gray background */
+  font-family: Arial, sans-serif; /* Font */
+  overflow: hidden;         /* Hide overflow */
 }
 
-#intro {
-  margin-bottom: 20px;
-}
-
-h1 {
-  font-size: 36px;
-}
-
-p {
-  font-size: 18px;
-  max-width: 400px;
-  margin: 10px auto;
-}
-
-#controls {
-  margin-top: 15px;
-}
-
-button {
-  padding: 8px 16px;
-  margin: 0 5px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
+/* Game container styling */
 #game {
   display: grid;
-  margin: 0 auto;
-  max-width: 95vw;
-  user-select: none;
-  margin-top: 20px;
+  grid-template-columns: repeat(9, 28px);  /* Default grid size for easy */
+  gap: 2px;  /* Space between cells */
+  border: 2px solid black;
+  border-radius: 5px;
 }
 
+/* Intro container */
+#intro {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+/* Cell styles */
 .cell {
   width: 28px;
   height: 28px;
-  background: #ccc;
-  border: 1px solid #999;
+  background-color: #ccc;
+  border: 1px solid #888;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 16px;
-  line-height: 28px;
-  text-align: center;
+  font-weight: bold;
   cursor: pointer;
 }
 
 .cell.revealed {
-  background: #e0e0e0;
-  cursor: default;
-}
-
-.cell.flagged {
-  background: #ffd700;
+  background-color: #fff;
 }
 
 .cell.mine {
-  background: red;
-  color: white;
+  background-color: red;
+}
+
+.cell.flagged {
+  background-color: yellow;
+}
+
+/* Revealed cells styling */
+.cell.revealed {
+  background-color: #e0e0e0;
+}
+
+/* Flagged cell */
+.cell.flagged {
+  color: red;
+}
+
+/* Hover effect */
+.cell:hover {
+  background-color: #bbb;
 }
