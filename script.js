@@ -1,8 +1,16 @@
 let grid = [];
 let rows, cols, mineCount;
 let gameEl = document.getElementById('game');
+let introEl = document.getElementById('intro');
+let revealedCells = 0;
+let totalCells;
 
 function startGame(difficulty) {
+  // Hide the intro and show the game
+  introEl.style.display = 'none';
+  revealedCells = 0;
+
+  // Set grid size and mine count based on difficulty
   if (difficulty === 'easy') {
     rows = cols = 9; mineCount = 10;
   } else if (difficulty === 'medium') {
@@ -12,9 +20,11 @@ function startGame(difficulty) {
   }
 
   grid = [];
+  totalCells = rows * cols - mineCount;
   gameEl.innerHTML = '';
   gameEl.style.gridTemplateColumns = `repeat(${cols}, 28px)`;
 
+  // Create cells
   for (let i = 0; i < rows * cols; i++) {
     let cell = {
       el: document.createElement('div'),
@@ -72,6 +82,7 @@ function getCell(x, y) {
 function reveal(cell) {
   if (cell.revealed || cell.flagged) return;
   cell.revealed = true;
+  revealedCells++;
   cell.el.classList.add('revealed');
   if (cell.mine) {
     cell.el.classList.add('mine');
@@ -87,6 +98,8 @@ function reveal(cell) {
       }
     }
   }
+
+  checkWin();
 }
 
 function toggleFlag(cell) {
@@ -104,4 +117,10 @@ function gameOver() {
     }
   }
   alert("Game Over");
+}
+
+function checkWin() {
+  if (revealedCells === totalCells) {
+    alert("You Win!");
+  }
 }
