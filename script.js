@@ -1,16 +1,17 @@
-let grid = [];
-let rows, cols, mineCount;
-let gameEl = document.getElementById('game');
-let introEl = document.getElementById('intro');
-let revealedCells = 0;
-let totalCells;
+// Variables for the game
+let grid = []; // Store all cells
+let rows, cols, mineCount; // Grid size and number of mines
+let gameEl = document.getElementById('game'); // Game display
+let introEl = document.getElementById('intro'); // Intro screen
+let revealedCells = 0; // Track revealed cells
+let totalCells; // Track total non-mine cells
 
+// Start the game based on difficulty
 function startGame(difficulty) {
-  // Hide the intro and show the game
-  introEl.style.display = 'none';
-  revealedCells = 0;
+  introEl.style.display = 'none'; // Hide intro
+  revealedCells = 0; // Reset revealed cells
 
-  // Set grid size and mine count based on difficulty
+  // Set grid size and mines based on difficulty
   if (difficulty === 'easy') {
     rows = cols = 9; mineCount = 10;
   } else if (difficulty === 'medium') {
@@ -19,38 +20,39 @@ function startGame(difficulty) {
     rows = cols = 24; mineCount = 99;
   }
 
-  grid = [];
-  totalCells = rows * cols - mineCount;
-  gameEl.innerHTML = '';
-  gameEl.style.gridTemplateColumns = `repeat(${cols}, 28px)`;
+  grid = []; // Reset grid
+  totalCells = rows * cols - mineCount; // Total non-mine cells
+  gameEl.innerHTML = ''; // Clear game area
+  gameEl.style.gridTemplateColumns = `repeat(${cols}, 28px)`; // Set grid layout
 
-  // Create cells
+  // Create cells for the grid
   for (let i = 0; i < rows * cols; i++) {
     let cell = {
-      el: document.createElement('div'),
-      revealed: false,
-      mine: false,
-      flagged: false,
-      neighbors: 0,
-      x: i % cols,
-      y: Math.floor(i / cols),
+      el: document.createElement('div'), // Cell element
+      revealed: false, // Cell revealed status
+      mine: false, // Cell contains mine or not
+      flagged: false, // Cell flagged or not
+      neighbors: 0, // Neighboring mine count
+      x: i % cols, // X position
+      y: Math.floor(i / cols), // Y position
     };
 
-    cell.el.className = 'cell';
-    cell.el.addEventListener('click', () => reveal(cell));
+    cell.el.className = 'cell'; // Set CSS class for cell
+    cell.el.addEventListener('click', () => reveal(cell)); // Left-click to reveal
     cell.el.addEventListener('contextmenu', e => {
       e.preventDefault();
-      toggleFlag(cell);
+      toggleFlag(cell); // Right-click to flag
     });
 
-    gameEl.appendChild(cell.el);
-    grid.push(cell);
+    gameEl.appendChild(cell.el); // Add cell to grid
+    grid.push(cell); // Add cell to array
   }
 
-  placeMines();
-  calculateNeighbors();
+  placeMines(); // Place mines randomly
+  calculateNeighbors(); // Calculate neighboring mines
 }
 
+// Place mines randomly
 function placeMines() {
   let placed = 0;
   while (placed < mineCount) {
@@ -62,6 +64,7 @@ function placeMines() {
   }
 }
 
+// Calculate neighboring mines for each cell
 function calculateNeighbors() {
   for (let cell of grid) {
     if (cell.mine) continue;
@@ -74,16 +77,19 @@ function calculateNeighbors() {
   }
 }
 
+// Get cell at specific (x, y) position
 function getCell(x, y) {
   if (x < 0 || y < 0 || x >= cols || y >= rows) return null;
   return grid[y * cols + x];
 }
 
+// Reveal a cell when clicked
 function reveal(cell) {
   if (cell.revealed || cell.flagged) return;
   cell.revealed = true;
   revealedCells++;
   cell.el.classList.add('revealed');
+
   if (cell.mine) {
     cell.el.classList.add('mine');
     cell.el.textContent = '💣';
@@ -99,9 +105,10 @@ function reveal(cell) {
     }
   }
 
-  checkWin();
+  checkWin(); // Check win condition
 }
 
+// Toggle flag on right-click
 function toggleFlag(cell) {
   if (cell.revealed) return;
   cell.flagged = !cell.flagged;
@@ -109,6 +116,7 @@ function toggleFlag(cell) {
   cell.el.textContent = cell.flagged ? '🚩' : '';
 }
 
+// End the game and show all mines
 function gameOver() {
   for (let cell of grid) {
     if (cell.mine && !cell.revealed) {
@@ -119,6 +127,7 @@ function gameOver() {
   alert("Game Over");
 }
 
+// Check if the player has won
 function checkWin() {
   if (revealedCells === totalCells) {
     alert("You Win!");
