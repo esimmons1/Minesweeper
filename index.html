@@ -7,11 +7,14 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Minesweeper</h1>
-  <div id="controls">
-    <button onclick="startGame('easy')">Easy</button>
-    <button onclick="startGame('medium')">Medium</button>
-    <button onclick="startGame('hard')">Hard</button>
+  <div id="intro">
+    <h1>Minesweeper</h1>
+    <p>Choose a difficulty level and start playing! The goal is to uncover all the cells that do not contain mines. Left-click to reveal a cell, right-click to flag a cell. If you reveal a mine, you lose!</p>
+    <div id="controls">
+      <button onclick="startGame('easy')">Easy</button>
+      <button onclick="startGame('medium')">Medium</button>
+      <button onclick="startGame('hard')">Hard</button>
+    </div>
   </div>
   <div id="game"></div>
   <script src="script.js"></script>
