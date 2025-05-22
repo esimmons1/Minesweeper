@@ -1,7 +1,7 @@
 Minesweeper
 ===========
 
-By Ellis Simmons - Spring 2025? 
+By Ellis Simmons - Spring 2025? <br/>
 Made with Java (Swing)  
 
 What is this?
