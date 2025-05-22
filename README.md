@@ -21,7 +21,7 @@ This is a custom version of the classic Minesweeper game I built in Java. The id
 ## Game Versions & Mine Counts
 
 Minesweeper Game available at:  
-👉 https://esimmons1.github.io/Minesweeper
+https://esimmons1.github.io/Minesweeper
 
 - Easy: 10 mines  
 - Medium: 40 mines  
@@ -39,4 +39,18 @@ Honestly just wanted to see if I could pull off a working Minesweeper clone from
 
 ---
 
-As per usual, if you're going to steal or use it at least credit me please.
+# Calculator
+
+Simple calculator project I made in my free time.  
+It currently does basic arithmetic like addition, subtraction, multiplication, and division.  
+Might add more functions later, idk.
+
+## Features  
+- Basic math operations  
+- Easy to use interface  
+
+## How to use  
+Just run the program and enter your expressions. It’ll do the math for you.
+
+## Credits  
+As per usual, if you're going to steal or use it at least credit me please. Thank you for reading and have a nice day.
