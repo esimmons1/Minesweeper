@@ -52,5 +52,4 @@ Might add more functions later, idk.
 ## How to use  
 Just run the program and enter your expressions. It’ll do the math for you.
 
-## Credits  
 As per usual, if you're going to steal or use it at least credit me please. Thank you for reading and have a nice day.
