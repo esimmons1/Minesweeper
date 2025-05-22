@@ -1,7 +1,7 @@
 Minesweeper
 ===========
 
-Made by: Ellis Simmons - Spring 2025? <br/>
+Made by: Ellis Simmons - Spring 2025    
 Languages: JavaScript, CSS, and HTML
 
 What is this?
