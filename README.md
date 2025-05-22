@@ -2,7 +2,7 @@ Minesweeper
 ===========
 
 By Ellis Simmons - Spring 2025? <br/>
-Made with Java, CSS, and HTML
+Made with JavaScript, CSS, and HTML
 
 What is this?
 -------------
